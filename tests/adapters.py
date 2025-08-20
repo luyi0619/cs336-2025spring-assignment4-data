@@ -1,16 +1,26 @@
 from __future__ import annotations
 
+import sys
 import os
-from typing import Any
 
+# Get the absolute path to the directory containing the module
+# For example, if 'my_module.py' is in '../other_directory', use:
+module_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'cs336_data'))
+
+# Add the path to sys.path
+sys.path.insert(0, module_path) # or sys.path.append(module_path)
+
+from typing import Any
+from extract import extract_text_from_html_bytes
+from langid import identify_language
 
 
 def run_extract_text_from_html_bytes(html_bytes: bytes) -> str | None:
-    raise NotImplementedError
+    return extract_text_from_html_bytes(html_bytes)
 
 
 def run_identify_language(text: str) -> tuple[Any, float]:
-    raise NotImplementedError
+    return identify_language(text)
 
 
 def run_mask_emails(text: str) -> tuple[str, int]:
